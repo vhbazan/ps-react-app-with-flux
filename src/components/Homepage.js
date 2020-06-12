@@ -1,6 +1,6 @@
 import React from "react";
 
-const Homepage = () => {
+const HomePage = () => {
   return (
     <div className="jumbotron">
       <h1>PluralSight Adminitration</h1>
@@ -9,4 +9,4 @@ const Homepage = () => {
   );
 };
 
-export default Homepage;
+export default HomePage;
