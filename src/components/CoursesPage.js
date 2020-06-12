@@ -10,11 +10,26 @@ class CoursesPage extends Component {
     return (
       <div>
         <h2>Courses</h2>
-        <ul>
-          {this.state.courses.map(course => {
-            return <li>{course.title}</li>;
-          })}
-        </ul>
+        <table className="table">
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Authod ID</th>
+              <th>Category</th>
+            </tr>
+          </thead>
+          <tbody>
+            {this.state.courses.map(course => {
+              return (
+                <tr>
+                  <td>{course.title}</td>
+                  <td>{course.authorId}</td>
+                  <td>{course.category}</td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
       </div>
     );
   }
