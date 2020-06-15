@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { Prompt } from "react-router-dom";
+import React, { useState, useEffect } from "react";
 import CourseForm from "./CourseForm";
 import * as courseApi from "../api/courseApi";
 import { toast } from "react-toastify";
@@ -13,6 +12,15 @@ const ManageCoursePage = props => {
     authorId: null,
     category: ""
   });
+
+  useEffect(() => {
+    const slug = props.match.params.slug;
+    if (slug) {
+      courseApi.getCourseBySlug(slug).then(_course => {
+        setCourse(_course);
+      });
+    }
+  }, [props.match.params.slug]);
 
   function handleFormChange(event) {
     const updatedCourse = {
@@ -51,7 +59,6 @@ const ManageCoursePage = props => {
         onFormChange={handleFormChange}
         onSubmit={handleSubmit}
       />
-      {props.match.params.slug}
     </>
   );
 };
