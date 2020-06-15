@@ -12,10 +12,10 @@ function TextInput(props) {
         <input
           id={props.id}
           type="text"
-          name={props.label}
+          name={props.name}
           className="form-control"
           value={props.value}
-          onChange={props.onFormChange}
+          onChange={props.onChange}
         />
       </div>
       {props.error && <div className="alert alert-danger">{props.error}</div>}
