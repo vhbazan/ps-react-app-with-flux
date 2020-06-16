@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
-import { deleteCourse } from "../api/courseApi";
+import { toast } from "react-toastify";
 
 function CourseList(props) {
   return (
@@ -26,7 +26,13 @@ function CourseList(props) {
               <td>
                 <button
                   className="btn btn-outline-danger"
-                  onClick={() => props.deleteCourse(course.id)}
+                  onClick={() => {
+                    props.deleteCourse(course.id).then(() => {
+                      toast.success(
+                        `Course ${course.title} deleted correctly.`
+                      );
+                    });
+                  }}
                 >
                   Delete
                 </button>
