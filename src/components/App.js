@@ -8,6 +8,7 @@ import PageNotFound from "./PageNotFound";
 import ManageCoursePage from "./ManageCoursePage";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import CourseNotFound from "./CourseNotFound";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
       <Switch>
         <Route path="/" exact component={HomePage} />
         <Route path="/courses" component={CoursesPage} />
+        <Route path="/course/not-found" component={CourseNotFound} />
         <Route path="/course/:slug" component={ManageCoursePage} />
         <Route path="/course" component={ManageCoursePage} />
         <Route path="/about" component={AboutPage} />
