@@ -9,7 +9,7 @@ function CourseList(props) {
       <thead>
         <tr>
           <th>Title</th>
-          <th>Authod ID</th>
+          <th>Author / Author ID</th>
           <th>Category</th>
           <th>Actions</th>
         </tr>
@@ -21,7 +21,7 @@ function CourseList(props) {
               <td>
                 <Link to={"/course/" + course.slug}>{course.title}</Link>
               </td>
-              <td>{course.authorId}</td>
+              <td>{course.author ? course.author.name : course.authorId}</td>
               <td>{course.category}</td>
               <td>
                 <button
@@ -52,6 +52,7 @@ CourseList.propTypes = {
       id: PropTypes.number.isRequired,
       title: PropTypes.string.isRequired,
       authorId: PropTypes.number.isRequired,
+      author: PropTypes.object,
       category: PropTypes.string.isRequired
     })
   ).isRequired
