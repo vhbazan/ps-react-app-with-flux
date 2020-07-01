@@ -25,8 +25,13 @@ function CourseForm(props) {
             className="form-control"
           >
             <option value="" />
-            <option value="1">Cory House</option>
-            <option value="2">Scott Allen</option>
+            {props.authors.map(author => {
+              return (
+                <option value={author.id} key={author.id}>
+                  {author.name}
+                </option>
+              );
+            })}
           </select>
         </div>
         {props.errors.authorId && (
@@ -52,7 +57,8 @@ CourseForm.propTypes = {
   course: PropTypes.object.isRequired,
   onSubmit: PropTypes.func.isRequired,
   onFormChange: PropTypes.func.isRequired,
-  errors: PropTypes.object.isRequired
+  errors: PropTypes.object.isRequired,
+  authors: PropTypes.array.isRequired
 };
 
 export default CourseForm;

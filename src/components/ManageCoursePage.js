@@ -3,6 +3,8 @@ import CourseForm from "./CourseForm";
 import courseStore from "../stores/CourseStore";
 import { toast } from "react-toastify";
 import * as courseActions from "../actions/courseActions";
+import * as authorActions from "../actions/authorActions";
+import authorStore from "../stores/AuthorStore";
 
 const ManageCoursePage = props => {
   const [errors, setErrors] = useState({});
@@ -14,6 +16,7 @@ const ManageCoursePage = props => {
     authorId: null,
     category: ""
   });
+  const [authors, setAuthors] = useState(authorStore.getAuthors());
 
   useEffect(() => {
     courseStore.addChangeListener(onChange);
@@ -30,10 +33,23 @@ const ManageCoursePage = props => {
     }
 
     return () => courseStore.removeChangeListener(onChange);
-  }, [props.history, courses.length, props.match.params.slug]);
+  }, [props.history, courses.length, props.match.params.slug, authors]);
+
+  useEffect(() => {
+    authorStore.addChangeListener(onAuthorChange);
+
+    if (authors.length === 0) {
+      authorActions.loadAuthors();
+    }
+    return () => authorStore.removeChangeListener(onAuthorChange);
+  }, [authors]);
 
   function onChange() {
     setCourses(courseStore.getCourses());
+  }
+
+  function onAuthorChange() {
+    setAuthors(authorStore.getAuthors());
   }
 
   function handleFormChange(event) {
@@ -72,6 +88,7 @@ const ManageCoursePage = props => {
         course={course}
         onFormChange={handleFormChange}
         onSubmit={handleSubmit}
+        authors={authors}
       />
     </>
   );
